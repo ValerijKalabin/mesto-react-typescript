@@ -1,0 +1,13 @@
+.menu__item_type_text {
+  cursor: text;
+}
+
+.menu__item_type_text:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 576px) {
+  .menu__item_type_text {
+    display: none;
+  }
+}

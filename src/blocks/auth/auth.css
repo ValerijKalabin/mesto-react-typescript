@@ -1,0 +1,11 @@
+.auth {
+  width: 100%;
+  padding: 0 0 15px;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .auth {
+    padding: 0 0 20px;
+  }
+}

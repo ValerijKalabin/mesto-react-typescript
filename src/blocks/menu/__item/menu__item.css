@@ -1,0 +1,32 @@
+.menu__item {
+  display: block;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  outline: none;
+  margin: 0;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s ease-out;
+}
+
+.menu__item + .menu__item {
+  margin: 0 0 0 24px;
+}
+
+.menu__item:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+  .menu__item {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
