@@ -17,8 +17,8 @@ import successIcon from '../images/icon-success.svg';
 import * as api from '../utils/Api';
 import IUser from '../interfaces/IUser';
 import ICard from '../interfaces/ICard';
-import noUser from '../constans/noUser';
-import noCard from '../constans/noCard';
+import noUser from '../constants/noUser';
+import noCard from '../constants/noCard';
 import IAvatar from '../interfaces/IAvatar';
 import IProfile from '../interfaces/IProfile';
 import IPlace from '../interfaces/IPlace';
@@ -37,7 +37,7 @@ const App: FunctionComponent = (): ReactElement => {
   const [isShowImagePopupOpen, setIsShowImagePopupOpen] = useState<boolean>(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState<boolean>(false);
   const [isSuccessfulRegistration, setRegistrationState] = useState<boolean>(false);
-  const [isExistLocalToken, setExistLocalToken] = useState<boolean>(false);
+  const [appState, toggleAppState] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<IUser>(noUser);
   const [userEmail, setUserEmail] = useState<string>('');
   const [selectedCard, setSelectedCard] = useState<ICard>(noCard);
@@ -67,11 +67,11 @@ const App: FunctionComponent = (): ReactElement => {
       .then((data) => {
         if(data.token) {
           localStorage.setItem('mesto-web-token', data.token);
-          setExistLocalToken(true);
+          toggleAppState(!appState);
         }
       })
       .catch((error) => {
-        console.log(error);
+        alert(`Ошибка авторизации: ${error.status}`);
       })
       .finally(() => {
         setLoginButtonCaption('Войти');
@@ -80,7 +80,6 @@ const App: FunctionComponent = (): ReactElement => {
 
   function handleClickLogoutButton(): void {
     localStorage.removeItem('mesto-web-token');
-    setExistLocalToken(false);
     setUserEmail('');
     setCurrentUser(noUser);
     setCards([noCard]);
@@ -165,12 +164,12 @@ const App: FunctionComponent = (): ReactElement => {
       });
   }
 
-  function handleCardLike(card: ICard): void {
-    const isLiked = card.likes.some((user) => user._id === currentUser._id);
-    api.toggleLike(card._id, isLiked)
+  function handleCardLike(element: ICard): void {
+    const isLiked: boolean = element.likes.some((user) => user._id === currentUser._id);
+    api.toggleLike(element._id, isLiked)
       .then((editedCard) => {
-        const editedCards = cards.map(card => card._id === editedCard._id ? editedCard : card);
-        setCards(editedCards);
+        const newCards: ICard[] = cards.map(card => card._id === editedCard._id ? editedCard : card);
+        setCards(newCards);
       })
       .catch(() => {
         alert('Не удалось изменить лайк. Попробуйте ещё раз.');
@@ -182,8 +181,8 @@ const App: FunctionComponent = (): ReactElement => {
     setConfirmSubmitButtonCaption('Удаление...');
     api.deleteCard(deletedСard._id)
       .then(() => {
-        const editedCards = cards.filter(card => card._id !== deletedСard._id);
-        setCards(editedCards);
+        const newCards: ICard[] = cards.filter(card => card._id !== deletedСard._id);
+        setCards(newCards);
         setIsConfirmDeletePopupOpen(false);
       })
       .catch((error) => {
@@ -210,20 +209,20 @@ const App: FunctionComponent = (): ReactElement => {
           history.push('/');
         })
         .catch((error) => {
-          console.log(error);
+          alert(`Ошибка авторизации: ${error.status}`);
         })
         .finally(() => {
           setLoginButtonCaption('Войти');
         });
     }
-  }, [isExistLocalToken, history]);
+  }, [appState, history]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__container">
           <Header
-            email={userEmail}
+            userEmail={userEmail}
             onClickLogoutButton={handleClickLogoutButton}
           />
           <Switch>
@@ -240,7 +239,7 @@ const App: FunctionComponent = (): ReactElement => {
               />
             </Route>
             <Route path="/">
-              { !!currentUser._id
+              { !!userEmail
                 ? <Main
                     onEditAvatar={handleEditAvatarClick}
                     onEditProfile={handleEditProfileClick}

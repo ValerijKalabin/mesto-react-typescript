@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import ICard from '../interfaces/ICard';
 import Card from './Card';
@@ -8,12 +8,12 @@ type MainProps = {
   onEditProfile(): void
   onAddPlace(): void
   onCardClick(element: ICard): void
-  onCardLike(card: ICard): void
+  onCardLike(element: ICard): void
   onCardDelete(element: ICard): void
   cards: ICard[]
 };
 
-const Main: React.FunctionComponent<MainProps> = ({
+const Main: FunctionComponent<MainProps> = ({
   onEditAvatar,
   onEditProfile,
   onAddPlace,

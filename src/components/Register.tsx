@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import AuthForm from './AuthForm';
 
@@ -10,7 +10,7 @@ type RegisterProps = {
   ): void
 };
 
-const Register: React.FunctionComponent<RegisterProps> = ({
+const Register: FunctionComponent<RegisterProps> = ({
   registerButtonCaption,
   onSubmitRegisterForm
 }):ReactElement => {

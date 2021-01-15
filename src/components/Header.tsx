@@ -1,21 +1,21 @@
-import React, { ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import logo from '../images/logo.svg';
 import Menu from './Menu';
 
 type HeaderProps = {
-  email: string
+  userEmail: string
   onClickLogoutButton(): void
 }
 
-const Header: React.FunctionComponent<HeaderProps> = ({
-  email,
+const Header: FunctionComponent<HeaderProps> = ({
+  userEmail,
   onClickLogoutButton 
 }): ReactElement => {
   return (
     <header className="header">
       <img className="header__logo" src={logo} alt="Россия" />
       <Menu
-        email={email}
+        userEmail={userEmail}
         onClickLogoutButton={onClickLogoutButton}
       />
     </header>

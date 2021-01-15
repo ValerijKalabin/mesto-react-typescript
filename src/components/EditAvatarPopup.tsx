@@ -38,7 +38,7 @@ const EditAvatarPopup: React.FunctionComponent<AvatarPopupProps> = ({
       setErrorInput('');
       setValidityInput(false);
     }
-  },  [isOpen]);
+  }, [isOpen]);
 
   return (
     <PopupWithForm

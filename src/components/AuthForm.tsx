@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 
 type AuthFormProps = {
   title: string
@@ -9,7 +9,7 @@ type AuthFormProps = {
   ): void
 };
 
-const AuthForm: React.FunctionComponent<AuthFormProps> = ({
+const AuthForm: FunctionComponent<AuthFormProps> = ({
   title,
   buttonCaption,
   onSubmitAuthForm

@@ -1,4 +1,4 @@
-import React, { ReactElement, SyntheticEvent } from 'react';
+import React, { FunctionComponent, ReactElement, SyntheticEvent } from 'react';
 import ICard from '../interfaces/ICard';
 
 type ImagePopupProps = {
@@ -7,7 +7,7 @@ type ImagePopupProps = {
   onClose(event: SyntheticEvent): void
 };
 
-const ImagePopup: React.FunctionComponent<ImagePopupProps> = ({
+const ImagePopup: FunctionComponent<ImagePopupProps> = ({
   card,
   isOpen,
   onClose

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import AuthForm from './AuthForm';
 
 type LoginProps = {
@@ -9,7 +9,7 @@ type LoginProps = {
   ): void
 };
 
-const Login: React.FunctionComponent<LoginProps> = ({
+const Login: FunctionComponent<LoginProps> = ({
   loginButtonCaption,
   onSubmitLoginForm
 }): ReactElement => {

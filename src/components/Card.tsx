@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import ICard from '../interfaces/ICard';
 import IUser from '../interfaces/IUser';
@@ -10,7 +10,7 @@ type CardProps = {
   onElementDelete(element: ICard): void
 };
 
-const Card: React.FunctionComponent<CardProps> = ({
+const Card: FunctionComponent<CardProps> = ({
   element,
   onElementClick,
   onElementLike,

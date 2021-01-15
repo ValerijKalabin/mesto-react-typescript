@@ -1,4 +1,4 @@
-import React, { ReactElement, SyntheticEvent } from 'react';
+import React, { FunctionComponent, ReactElement, SyntheticEvent } from 'react';
 import { useState } from 'react';
 import PopupWithForm from './PopupWithForm';
 import CurrentUserContext from '../contexts/CurrentUserContext';
@@ -12,7 +12,7 @@ type ProfilePopupProps = {
   submitButtonCaption: string
 };
 
-const EditProfilePopup: React.FunctionComponent<ProfilePopupProps> = ({
+const EditProfilePopup: FunctionComponent<ProfilePopupProps> = ({
   isOpen,
   onClose,
   onUpdateUser,

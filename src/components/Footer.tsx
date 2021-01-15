@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 
-const Footer: React.FunctionComponent = (): ReactElement => {
+const Footer: FunctionComponent = (): ReactElement => {
   return (
     <footer className="footer">
       <p className="footer__copyright">&copy; {new Date().getFullYear()} Mesto Russia</p>

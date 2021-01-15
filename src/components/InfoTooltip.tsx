@@ -1,4 +1,4 @@
-import React, { ReactElement, SyntheticEvent } from 'react';
+import React, { FunctionComponent, ReactElement, SyntheticEvent } from 'react';
 
 type InfoTooltipProps = {
   name: string
@@ -8,7 +8,7 @@ type InfoTooltipProps = {
   onClose(event: SyntheticEvent): void
 };
 
-const InfoTooltip: React.FunctionComponent<InfoTooltipProps> = ({
+const InfoTooltip: FunctionComponent<InfoTooltipProps> = ({
   name,
   icon,
   title,

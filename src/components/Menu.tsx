@@ -1,19 +1,16 @@
-import React, { ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
-import CurrentUserContext from '../contexts/CurrentUserContext';
-import IUser from '../interfaces/IUser';
 
 type MenuProps = {
-  email: string
+  userEmail: string
   onClickLogoutButton(): void
 }
 
-const Menu: React.FunctionComponent<MenuProps> = ({
-  email,
+const Menu: FunctionComponent<MenuProps> = ({
+  userEmail,
   onClickLogoutButton
 }): ReactElement => {
-  const currentUser: IUser = React.useContext<IUser>(CurrentUserContext);
-  const loggedIn: boolean = Boolean(currentUser._id);
+  const loggedIn: boolean = Boolean(userEmail);
 
   return (
     <nav className="menu">
@@ -37,7 +34,7 @@ const Menu: React.FunctionComponent<MenuProps> = ({
       }
       {loggedIn &&
         <p className="menu__item menu__item_type_text">
-          {email}
+          {userEmail}
         </p>}
       {loggedIn &&
         <button

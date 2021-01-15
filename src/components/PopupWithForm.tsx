@@ -1,4 +1,4 @@
-import React, { ReactElement, SyntheticEvent } from 'react';
+import React, { FormEvent, FunctionComponent, ReactElement, ReactNode, SyntheticEvent } from 'react';
 
 type PopupFormProps = {
   name: string
@@ -7,11 +7,11 @@ type PopupFormProps = {
   isDisabledSubmitButton: boolean
   isOpen: boolean
   onClose(event: SyntheticEvent): void
-  onSubmit(event: React.FormEvent): void
-  children: React.ReactNode
+  onSubmit(event: FormEvent): void
+  children: ReactNode
 };
 
-const PopupWithForm:React.FunctionComponent<PopupFormProps> = ({
+const PopupWithForm: FunctionComponent<PopupFormProps> = ({
   name,
   title,
   submitButtonCaption,
